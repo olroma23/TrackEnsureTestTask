@@ -1,0 +1,51 @@
+[
+    {
+        "name": "Okko",
+        "address": "Vavilovikh 15",
+        "supplier": "Saudi Arabia",
+        "cost": 26.00,
+        "quality": 5,
+        "id": "1"
+    },
+    {
+        "name": "Shell",
+        "address": "Kotovskoho 10",
+        "supplier": "USA",
+        "cost": 24.50,
+        "quality": 5,
+        "id": "2"
+    },
+    {
+        "name": "WOG",
+        "address": "Schuseva",
+        "supplier": "USA",
+        "cost": 25.20,
+        "quality": 4,
+        "id": "3"
+    },
+    {
+        "name": "KLO",
+        "address": "Khresharyk",
+        "supplier": "Russia",
+        "cost": 23.30,
+        "quality": 4,
+        "id": "4"
+    },
+    {
+        "name": "BRSM Nafta",
+        "address": "Sichovih Striltsiv",
+        "supplier": "Urkaine",
+        "cost": 23.40,
+        "quality": 3,
+        "id": "5"
+    },
+    {
+        "name": "Socar",
+        "address": "Viborska",
+        "supplier": "Azerbaijan",
+        "cost": 26.40,
+        "quality": 5,
+        "id": "6"
+    }
+    
+]

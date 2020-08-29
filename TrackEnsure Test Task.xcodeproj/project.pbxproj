@@ -11,9 +11,18 @@
 		EC8F0CF524F951E8004D1EB7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F0CF424F951E8004D1EB7 /* SceneDelegate.swift */; };
 		EC8F0CFC24F951EC004D1EB7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC8F0CFB24F951EC004D1EB7 /* Assets.xcassets */; };
 		EC8F0D0724F95349004D1EB7 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F0D0624F95349004D1EB7 /* MainViewController.swift */; };
-		EC8F0D0924F95540004D1EB7 /* tableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F0D0824F95540004D1EB7 /* tableTableViewController.swift */; };
 		EC8F0D0B24F994A5004D1EB7 /* GasStationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F0D0A24F994A4004D1EB7 /* GasStationsTableViewController.swift */; };
-		EC8F0D0D24F997A0004D1EB7 /* StatisticsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F0D0C24F997A0004D1EB7 /* StatisticsTableViewController.swift */; };
+		EC8F0D0D24F997A0004D1EB7 /* InfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F0D0C24F997A0004D1EB7 /* InfoTableViewController.swift */; };
+		EC8F0D1324F9C25F004D1EB7 /* GasStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F0D1224F9C25F004D1EB7 /* GasStation.swift */; };
+		EC8F0D1524F9C48F004D1EB7 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F0D1424F9C48F004D1EB7 /* MapViewController.swift */; };
+		EC8F0D1724FA7967004D1EB7 /* FakeData.json in Resources */ = {isa = PBXBuildFile; fileRef = EC8F0D1624FA7967004D1EB7 /* FakeData.json */; };
+		EC8F0D1A24FA80E7004D1EB7 /* Bundle-Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F0D1924FA80E7004D1EB7 /* Bundle-Decodable.swift */; };
+		EC8F0D1D24FA8D12004D1EB7 /* GasStationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F0D1C24FA8D12004D1EB7 /* GasStationTableViewCell.swift */; };
+		EC8F0D1F24FA98DB004D1EB7 /* InfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F0D1E24FA98DB004D1EB7 /* InfoTableViewCell.swift */; };
+		EC8F0D2124FAC5A7004D1EB7 /* MapManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F0D2024FAC5A6004D1EB7 /* MapManager.swift */; };
+		EC8F0D2424FAD049004D1EB7 /* CustomTextFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F0D2324FAD049004D1EB7 /* CustomTextFields.swift */; };
+		EC8F0D2624FAD09E004D1EB7 /* UIImage + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F0D2524FAD09E004D1EB7 /* UIImage + Extension.swift */; };
+		EC8F0D2824FAD46F004D1EB7 /* StackView + Extension .swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F0D2724FAD46F004D1EB7 /* StackView + Extension .swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,9 +32,18 @@
 		EC8F0CFB24F951EC004D1EB7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC8F0D0024F951EC004D1EB7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EC8F0D0624F95349004D1EB7 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		EC8F0D0824F95540004D1EB7 /* tableTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tableTableViewController.swift; sourceTree = "<group>"; };
 		EC8F0D0A24F994A4004D1EB7 /* GasStationsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasStationsTableViewController.swift; sourceTree = "<group>"; };
-		EC8F0D0C24F997A0004D1EB7 /* StatisticsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsTableViewController.swift; sourceTree = "<group>"; };
+		EC8F0D0C24F997A0004D1EB7 /* InfoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTableViewController.swift; sourceTree = "<group>"; };
+		EC8F0D1224F9C25F004D1EB7 /* GasStation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasStation.swift; sourceTree = "<group>"; };
+		EC8F0D1424F9C48F004D1EB7 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		EC8F0D1624FA7967004D1EB7 /* FakeData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = FakeData.json; sourceTree = "<group>"; };
+		EC8F0D1924FA80E7004D1EB7 /* Bundle-Decodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle-Decodable.swift"; sourceTree = "<group>"; };
+		EC8F0D1C24FA8D12004D1EB7 /* GasStationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasStationTableViewCell.swift; sourceTree = "<group>"; };
+		EC8F0D1E24FA98DB004D1EB7 /* InfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTableViewCell.swift; sourceTree = "<group>"; };
+		EC8F0D2024FAC5A6004D1EB7 /* MapManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapManager.swift; sourceTree = "<group>"; };
+		EC8F0D2324FAD049004D1EB7 /* CustomTextFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFields.swift; sourceTree = "<group>"; };
+		EC8F0D2524FAD09E004D1EB7 /* UIImage + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + Extension.swift"; sourceTree = "<group>"; };
+		EC8F0D2724FAD46F004D1EB7 /* StackView + Extension .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StackView + Extension .swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,24 +76,57 @@
 		EC8F0CF124F951E8004D1EB7 /* TrackEnsure Test Task */ = {
 			isa = PBXGroup;
 			children = (
-				EC8F0D0E24F9A4A0004D1EB7 /* Controllers */,
+				EC8F0D1124F9BF02004D1EB7 /* Model */,
+				EC8F0D0E24F9A4A0004D1EB7 /* Controller */,
 				EC8F0CF224F951E8004D1EB7 /* AppDelegate.swift */,
+				EC8F0D2024FAC5A6004D1EB7 /* MapManager.swift */,
 				EC8F0CF424F951E8004D1EB7 /* SceneDelegate.swift */,
 				EC8F0CFB24F951EC004D1EB7 /* Assets.xcassets */,
 				EC8F0D0024F951EC004D1EB7 /* Info.plist */,
-				EC8F0D0824F95540004D1EB7 /* tableTableViewController.swift */,
+				EC8F0D1624FA7967004D1EB7 /* FakeData.json */,
+				EC8F0D1824FA80D1004D1EB7 /* Extensions */,
 			);
 			path = "TrackEnsure Test Task";
 			sourceTree = "<group>";
 		};
-		EC8F0D0E24F9A4A0004D1EB7 /* Controllers */ = {
+		EC8F0D0E24F9A4A0004D1EB7 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				EC8F0D1B24FA8CFB004D1EB7 /* Cell */,
 				EC8F0D0624F95349004D1EB7 /* MainViewController.swift */,
 				EC8F0D0A24F994A4004D1EB7 /* GasStationsTableViewController.swift */,
-				EC8F0D0C24F997A0004D1EB7 /* StatisticsTableViewController.swift */,
+				EC8F0D0C24F997A0004D1EB7 /* InfoTableViewController.swift */,
+				EC8F0D1424F9C48F004D1EB7 /* MapViewController.swift */,
 			);
-			path = Controllers;
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		EC8F0D1124F9BF02004D1EB7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EC8F0D1224F9C25F004D1EB7 /* GasStation.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		EC8F0D1824FA80D1004D1EB7 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				EC8F0D1924FA80E7004D1EB7 /* Bundle-Decodable.swift */,
+				EC8F0D2324FAD049004D1EB7 /* CustomTextFields.swift */,
+				EC8F0D2524FAD09E004D1EB7 /* UIImage + Extension.swift */,
+				EC8F0D2724FAD46F004D1EB7 /* StackView + Extension .swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		EC8F0D1B24FA8CFB004D1EB7 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				EC8F0D1C24FA8D12004D1EB7 /* GasStationTableViewCell.swift */,
+				EC8F0D1E24FA98DB004D1EB7 /* InfoTableViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,6 +187,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC8F0D1724FA7967004D1EB7 /* FakeData.json in Resources */,
 				EC8F0CFC24F951EC004D1EB7 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -147,12 +199,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EC8F0D0924F95540004D1EB7 /* tableTableViewController.swift in Sources */,
+				EC8F0D2424FAD049004D1EB7 /* CustomTextFields.swift in Sources */,
+				EC8F0D1324F9C25F004D1EB7 /* GasStation.swift in Sources */,
+				EC8F0D1F24FA98DB004D1EB7 /* InfoTableViewCell.swift in Sources */,
 				EC8F0D0724F95349004D1EB7 /* MainViewController.swift in Sources */,
-				EC8F0D0D24F997A0004D1EB7 /* StatisticsTableViewController.swift in Sources */,
+				EC8F0D1D24FA8D12004D1EB7 /* GasStationTableViewCell.swift in Sources */,
+				EC8F0D0D24F997A0004D1EB7 /* InfoTableViewController.swift in Sources */,
+				EC8F0D2124FAC5A7004D1EB7 /* MapManager.swift in Sources */,
+				EC8F0D1A24FA80E7004D1EB7 /* Bundle-Decodable.swift in Sources */,
+				EC8F0D2624FAD09E004D1EB7 /* UIImage + Extension.swift in Sources */,
 				EC8F0D0B24F994A5004D1EB7 /* GasStationsTableViewController.swift in Sources */,
 				EC8F0CF324F951E8004D1EB7 /* AppDelegate.swift in Sources */,
 				EC8F0CF524F951E8004D1EB7 /* SceneDelegate.swift in Sources */,
+				EC8F0D2824FAD46F004D1EB7 /* StackView + Extension .swift in Sources */,
+				EC8F0D1524F9C48F004D1EB7 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

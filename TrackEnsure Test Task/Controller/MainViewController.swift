@@ -10,10 +10,10 @@ import UIKit
 
 class MainViewController: UIViewController {
     
-    let items = ["Gas stations", "Statistics"]
+    let items = ["Gas stations", "Info"]
     var switchView: UISegmentedControl?
     let gasStationsViewController = GasStationsTableViewController()
-    let statisticsViewController = StatisticsTableViewController()
+    let infoViewController = InfoTableViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,28 +23,27 @@ class MainViewController: UIViewController {
         addChildControllers()
         setupSegmentedController()
         setupConstraints()
+        
+        self.title = "TrackEnsure"
+        
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewGasStation))
+        self.navigationItem.rightBarButtonItem = addButton
+
+        
     }
     
     
     private func addChildControllers() {
         self.addChild(gasStationsViewController)
-        self.addChild(statisticsViewController)
+        self.addChild(infoViewController)
     }
     
-//    func hideContentController(content: UIViewController?) {
-//        guard let content = content else { return }
-//        content.willMove(toParent: nil)
-//        content.view.removeFromSuperview()
-//        content.removeFromParent()
-//        print("Removed: \(content)")
-//    }
-//
-
+    
     private func setupSegmentedController() {
         switchView = UISegmentedControl(items: items)
         switchView?.selectedSegmentIndex = 0
         gasStationsViewController.view.alpha = 1
-        statisticsViewController.view.alpha = 0
+        infoViewController.view.alpha = 0
         switchView?.addTarget(self, action: #selector(segmentControl), for: .valueChanged)
     }
     
@@ -52,13 +51,17 @@ class MainViewController: UIViewController {
         switch switchView?.selectedSegmentIndex {
         case 0:
             gasStationsViewController.view.alpha = 1
-            statisticsViewController.view.alpha = 0
+            infoViewController.view.alpha = 0
         case 1:
             gasStationsViewController.view.alpha = 0
-            statisticsViewController.view.alpha = 1
+            infoViewController.view.alpha = 1
         default:
             print("Smth wrong")
         }
+    }
+    
+    @objc private func addNewGasStation() {
+        self.navigationController?.pushViewController(MapViewController(), animated: true)
     }
     
     // MARK: Setup Constraints
@@ -86,13 +89,13 @@ class MainViewController: UIViewController {
             gasStationsView.widthAnchor.constraint(equalToConstant: view.frame.width)
         ])
         
-        guard let statisticsView = statisticsViewController.view else { return }
-        view.addSubview(statisticsView)
-        statisticsView.translatesAutoresizingMaskIntoConstraints = false
+        guard let infoView = infoViewController.view else { return }
+        view.addSubview(infoView)
+        infoView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            statisticsView.topAnchor.constraint(equalTo: segmentedContoller.bottomAnchor, constant: 30),
-            statisticsView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            statisticsView.widthAnchor.constraint(equalToConstant: view.frame.width)
+            infoView.topAnchor.constraint(equalTo: segmentedContoller.bottomAnchor, constant: 30),
+            infoView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            infoView.widthAnchor.constraint(equalToConstant: view.frame.width)
         ])
         
     }
