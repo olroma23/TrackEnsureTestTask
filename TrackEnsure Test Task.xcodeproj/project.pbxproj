@@ -16,8 +16,6 @@
 		EC8F0D0D24F997A0004D1EB7 /* InfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F0D0C24F997A0004D1EB7 /* InfoTableViewController.swift */; };
 		EC8F0D1324F9C25F004D1EB7 /* GasStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F0D1224F9C25F004D1EB7 /* GasStation.swift */; };
 		EC8F0D1524F9C48F004D1EB7 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F0D1424F9C48F004D1EB7 /* MapViewController.swift */; };
-		EC8F0D1724FA7967004D1EB7 /* FakeData.json in Resources */ = {isa = PBXBuildFile; fileRef = EC8F0D1624FA7967004D1EB7 /* FakeData.json */; };
-		EC8F0D1A24FA80E7004D1EB7 /* Bundle-Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F0D1924FA80E7004D1EB7 /* Bundle-Decodable.swift */; };
 		EC8F0D1D24FA8D12004D1EB7 /* GasStationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F0D1C24FA8D12004D1EB7 /* GasStationTableViewCell.swift */; };
 		EC8F0D1F24FA98DB004D1EB7 /* InfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F0D1E24FA98DB004D1EB7 /* InfoTableViewCell.swift */; };
 		EC8F0D2124FAC5A7004D1EB7 /* MapManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F0D2024FAC5A6004D1EB7 /* MapManager.swift */; };
@@ -25,6 +23,8 @@
 		EC8F0D2624FAD09E004D1EB7 /* UIImage + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F0D2524FAD09E004D1EB7 /* UIImage + Extension.swift */; };
 		EC8F0D2824FAD46F004D1EB7 /* StackView + Extension .swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F0D2724FAD46F004D1EB7 /* StackView + Extension .swift */; };
 		EC8F0D2A24FBF2E9004D1EB7 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F0D2924FBF2E9004D1EB7 /* StorageManager.swift */; };
+		EC8F0D2C24FC2611004D1EB7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EC8F0D2B24FC2610004D1EB7 /* GoogleService-Info.plist */; };
+		EC8F0D2F24FC2C7C004D1EB7 /* FirestoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F0D2E24FC2C7C004D1EB7 /* FirestoreService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,8 +41,6 @@
 		EC8F0D0C24F997A0004D1EB7 /* InfoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTableViewController.swift; sourceTree = "<group>"; };
 		EC8F0D1224F9C25F004D1EB7 /* GasStation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasStation.swift; sourceTree = "<group>"; };
 		EC8F0D1424F9C48F004D1EB7 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		EC8F0D1624FA7967004D1EB7 /* FakeData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = FakeData.json; sourceTree = "<group>"; };
-		EC8F0D1924FA80E7004D1EB7 /* Bundle-Decodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle-Decodable.swift"; sourceTree = "<group>"; };
 		EC8F0D1C24FA8D12004D1EB7 /* GasStationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasStationTableViewCell.swift; sourceTree = "<group>"; };
 		EC8F0D1E24FA98DB004D1EB7 /* InfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTableViewCell.swift; sourceTree = "<group>"; };
 		EC8F0D2024FAC5A6004D1EB7 /* MapManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapManager.swift; sourceTree = "<group>"; };
@@ -50,6 +48,8 @@
 		EC8F0D2524FAD09E004D1EB7 /* UIImage + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + Extension.swift"; sourceTree = "<group>"; };
 		EC8F0D2724FAD46F004D1EB7 /* StackView + Extension .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StackView + Extension .swift"; sourceTree = "<group>"; };
 		EC8F0D2924FBF2E9004D1EB7 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
+		EC8F0D2B24FC2610004D1EB7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		EC8F0D2E24FC2C7C004D1EB7 /* FirestoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,15 +102,14 @@
 		EC8F0CF124F951E8004D1EB7 /* TrackEnsure Test Task */ = {
 			isa = PBXGroup;
 			children = (
+				EC8F0D2D24FC2C4F004D1EB7 /* Services */,
 				EC8F0D1124F9BF02004D1EB7 /* Model */,
 				EC8F0D0E24F9A4A0004D1EB7 /* Controller */,
 				EC8F0CF224F951E8004D1EB7 /* AppDelegate.swift */,
-				EC8F0D2024FAC5A6004D1EB7 /* MapManager.swift */,
 				EC8F0CF424F951E8004D1EB7 /* SceneDelegate.swift */,
 				EC8F0CFB24F951EC004D1EB7 /* Assets.xcassets */,
 				EC8F0D0024F951EC004D1EB7 /* Info.plist */,
-				EC8F0D1624FA7967004D1EB7 /* FakeData.json */,
-				EC8F0D2924FBF2E9004D1EB7 /* StorageManager.swift */,
+				EC8F0D2B24FC2610004D1EB7 /* GoogleService-Info.plist */,
 				EC8F0D1824FA80D1004D1EB7 /* Extensions */,
 			);
 			path = "TrackEnsure Test Task";
@@ -139,7 +138,6 @@
 		EC8F0D1824FA80D1004D1EB7 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				EC8F0D1924FA80E7004D1EB7 /* Bundle-Decodable.swift */,
 				EC8F0D2324FAD049004D1EB7 /* CustomTextFields.swift */,
 				EC8F0D2524FAD09E004D1EB7 /* UIImage + Extension.swift */,
 				EC8F0D2724FAD46F004D1EB7 /* StackView + Extension .swift */,
@@ -154,6 +152,16 @@
 				EC8F0D1E24FA98DB004D1EB7 /* InfoTableViewCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		EC8F0D2D24FC2C4F004D1EB7 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				EC8F0D2924FBF2E9004D1EB7 /* StorageManager.swift */,
+				EC8F0D2E24FC2C7C004D1EB7 /* FirestoreService.swift */,
+				EC8F0D2024FAC5A6004D1EB7 /* MapManager.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -216,8 +224,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EC8F0D1724FA7967004D1EB7 /* FakeData.json in Resources */,
 				EC8F0CFC24F951EC004D1EB7 /* Assets.xcassets in Resources */,
+				EC8F0D2C24FC2611004D1EB7 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,8 +284,8 @@
 				EC8F0D0724F95349004D1EB7 /* MainViewController.swift in Sources */,
 				EC8F0D1D24FA8D12004D1EB7 /* GasStationTableViewCell.swift in Sources */,
 				EC8F0D0D24F997A0004D1EB7 /* InfoTableViewController.swift in Sources */,
+				EC8F0D2F24FC2C7C004D1EB7 /* FirestoreService.swift in Sources */,
 				EC8F0D2124FAC5A7004D1EB7 /* MapManager.swift in Sources */,
-				EC8F0D1A24FA80E7004D1EB7 /* Bundle-Decodable.swift in Sources */,
 				EC8F0D2624FAD09E004D1EB7 /* UIImage + Extension.swift in Sources */,
 				EC8F0D0B24F994A5004D1EB7 /* GasStationsTableViewController.swift in Sources */,
 				EC8F0CF324F951E8004D1EB7 /* AppDelegate.swift in Sources */,

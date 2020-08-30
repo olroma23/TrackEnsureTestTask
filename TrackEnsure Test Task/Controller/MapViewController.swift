@@ -56,8 +56,11 @@ class MapViewController: UIViewController {
     }
     
     @objc private func saveButtonPressed() {
+                
         let newGasStation = GasStation(name: nameTF.text!, address: addressLabel.text!, supplier: supplierTF.text!, cost: priceTF.text!, quality: qualityTF.text!)
+        
         if currentGasStation != nil {
+                    
             try! realm.write {
                 guard let name = nameTF.text, let price = priceTF.text, let quality = qualityTF.text, let supplier = supplierTF.text, let address = addressLabel.text else { return }
                 currentGasStation?.name = name
@@ -65,7 +68,9 @@ class MapViewController: UIViewController {
                 currentGasStation?.address = address
                 currentGasStation?.quality = quality
                 currentGasStation?.supplier = supplier
+                FirestoreService.shared.editData(gasStation: currentGasStation!)
             }
+            
         } else {
             StorageManager.shared.saveObject(newGasStation)
         }

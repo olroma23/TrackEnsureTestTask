@@ -16,9 +16,19 @@ class GasStation: Object {
     @objc dynamic var supplier: String?
     @objc dynamic var cost: String?
     @objc dynamic var quality: String?
+    @objc dynamic var uuid = UUID().uuidString
+
     
     
-//    @objc dynamic var id: String
+    var representation: [String: Any] {
+        var rep = ["name": name]
+        rep["address"] = address
+        rep["supplier"] = supplier
+        rep["cost"] = cost
+        rep["quality"] = quality
+        return rep
+    }
+    
     
     convenience init(name: String, address: String, supplier: String, cost: String, quality: String) {
         self.init()
