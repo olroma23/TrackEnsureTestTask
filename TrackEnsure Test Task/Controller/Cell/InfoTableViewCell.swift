@@ -44,11 +44,11 @@ class InfoTableViewCell: UITableViewCell {
     
     var gasStation : GasStation? {
         didSet {
-            nameLabel.text = gasStation!.name
-            quantityLabel.text = "Q-ty: \(gasStation!.quality)"
-            priceLabel.text = "Price: \(gasStation!.cost)"
-            supplierlabel.text = "Supplier: \(gasStation!.supplier)"
-        }
+            guard let name = gasStation?.name, let quality = gasStation?.quality, let price = gasStation?.cost, let supplier = gasStation?.supplier else { return }
+                 nameLabel.text = name
+                 quantityLabel.text = "Q-ty: \(quality)"
+                 priceLabel.text = "Price: \(price)"
+                 supplierlabel.text = "Supplier: \(supplier)"        }
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
