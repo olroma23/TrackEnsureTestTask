@@ -61,7 +61,7 @@ class MainViewController: UIViewController {
     }
     
     @objc private func addNewGasStation() {
-        self.navigationController?.pushViewController(MapViewController(), animated: true)
+        self.navigationController?.pushViewController(MapViewController(gasStation: nil), animated: true)
     }
     
     // MARK: Setup Constraints

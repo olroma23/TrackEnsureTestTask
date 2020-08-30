@@ -9,15 +9,9 @@
 import UIKit
 import MapKit
 
-
-protocol MapVCDelegate {
-    func getAddress(_ address: String?)
-}
-
 class MapViewController: UIViewController {
     
     let mapManager = MapManager()
-    var mapVCDelegate: MapVCDelegate?
     var gasStation: GasStation?
     let containerView = UIView()
     
@@ -28,15 +22,25 @@ class MapViewController: UIViewController {
     
     let pinCenterImage = UIImageView()
     var addressLabel = UILabel()
-    
-    let annotationIdentifier = "annotationIdentifier"
-    
+    var changeAddressButton = UIButton(type: .system)
+        
     let mapView = MKMapView()
+    
+    var isActive = true
+    
+    init(gasStation: GasStation?) {
+        super.init(nibName: nil, bundle: nil)
+        self.gasStation = gasStation
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        view.backgroundColor = .systemGreen
+
         setupStyles()
         setupConstraints()
         
@@ -44,16 +48,38 @@ class MapViewController: UIViewController {
         
         let saveButton = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(saveButtonPressed))
         self.navigationItem.rightBarButtonItem = saveButton
+        self.title = "New gas station"
+        configureInfo(currentGasStation: gasStation)
         
-        // Do any additional setup after loading the view.
+        changeAddressButton.addTarget(self, action: #selector(changeAddressButtonPressed), for: .touchUpInside)
+        
     }
     
     @objc private func saveButtonPressed() {
         
     }
     
+    
+    @objc private func changeAddressButtonPressed() {
+        isActive = true
+        pinCenterImage.image = UIImage(systemName: "mappin", withConfiguration: UIImage.SymbolConfiguration(weight: .regular))?.withTintColor(.systemIndigo, renderingMode: .alwaysOriginal)
+        changeAddressButton.isHidden = true
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
+    }
+    
+    private func configureInfo(currentGasStation: GasStation?) {
+        guard let currentGasStation = currentGasStation else { return }
+        isActive = false
+        nameTF.text = currentGasStation.name
+        priceTF.text = "\(currentGasStation.cost)"
+        qualityTF.text = "\(currentGasStation.quality)"
+        supplierTF.text = currentGasStation.supplier
+        addressLabel.text = currentGasStation.address
+        self.title = "Edit gas station"
+        mapManager.setupPlacemark(gasStation: gasStation, mapView: mapView)
     }
     
 }
@@ -64,34 +90,35 @@ extension MapViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         
-        let location = mapManager.getCenterLocation(for: mapView)
-        let geocoder = CLGeocoder()
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            self.mapManager.showUserLocation(mapView: mapView)
-        }
-        
-        
-        geocoder.cancelGeocode()
-        
-        geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
-            if let error = error {
-                print(error)
-                return
-            }
+        if isActive {
             
-            guard let placemarks = placemarks else { return }
-            let placemark = placemarks.first
-            let streetName = placemark?.thoroughfare
-            let buildNum = placemark?.subThoroughfare
+            changeAddressButton.isHidden = true
+            pinCenterImage.image = UIImage(systemName: "mappin", withConfiguration: UIImage.SymbolConfiguration(weight: .regular))?.withTintColor(.systemIndigo, renderingMode: .alwaysOriginal)
+
+            let location = mapManager.getCenterLocation(for: mapView)
+            let geocoder = CLGeocoder()
             
-            DispatchQueue.main.async {
-                if streetName != nil && buildNum != nil {
-                    self.addressLabel.text = "\(streetName!), \(buildNum!)"
-                } else if streetName != nil {
-                    self.addressLabel.text = "\(streetName!)"
-                } else {
-                    self.addressLabel.text = ""
+            geocoder.cancelGeocode()
+            
+            geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
+                if let error = error {
+                    print(error)
+                    return
+                }
+                
+                guard let placemarks = placemarks else { return }
+                let placemark = placemarks.first
+                let streetName = placemark?.thoroughfare
+                let buildNum = placemark?.subThoroughfare
+                
+                DispatchQueue.main.async {
+                    if streetName != nil && buildNum != nil {
+                        self.addressLabel.text = "\(streetName!), \(buildNum!)"
+                    } else if streetName != nil {
+                        self.addressLabel.text = "\(streetName!)"
+                    } else {
+                        self.addressLabel.text = "Choose an address"
+                    }
                 }
             }
         }
@@ -130,13 +157,17 @@ extension MapViewController {
         
         pinCenterImage.translatesAutoresizingMaskIntoConstraints = false
         mapView.addSubview(pinCenterImage)
-        pinCenterImage.image = UIImage(systemName: "mappin", withConfiguration: UIImage.SymbolConfiguration(weight: .regular))?.withTintColor(.systemIndigo, renderingMode: .alwaysOriginal)
         
         addressLabel.translatesAutoresizingMaskIntoConstraints = false
         mapView.addSubview(addressLabel)
         addressLabel.font = UIFont.boldSystemFont(ofSize: 15)
         addressLabel.textColor = .black
-        addressLabel.text = "Address"
+        addressLabel.text = "Choose an address"
+        
+        changeAddressButton.translatesAutoresizingMaskIntoConstraints = false
+        mapView.addSubview(changeAddressButton)
+        changeAddressButton.setTitle("Change address", for: .normal)
+
         
     }
     
@@ -167,8 +198,10 @@ extension MapViewController {
             pinCenterImage.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
             addressLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            addressLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30)
+            addressLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30),
             
+            changeAddressButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            changeAddressButton.topAnchor.constraint(equalTo: addressLabel.topAnchor, constant: -50)
         ])
     }
     

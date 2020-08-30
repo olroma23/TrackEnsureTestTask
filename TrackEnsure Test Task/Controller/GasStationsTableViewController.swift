@@ -12,12 +12,12 @@ class GasStationsTableViewController: UITableViewController {
     
     let cellid = "gasStationCell"
     let gasStations = Bundle.main.decode([GasStation].self, from: "FakeData.json")
-        
+            
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.register(GasStationTableViewCell.self, forCellReuseIdentifier: cellid)
-                
+        
     }
 
     // MARK: - Table view data source
@@ -33,7 +33,7 @@ class GasStationsTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellid, for: indexPath) as! GasStationTableViewCell
         let currentGasStation = gasStations[indexPath.row]
         cell.gasStation = currentGasStation
-        
+  
         return cell
     }
     
@@ -43,7 +43,8 @@ class GasStationsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.navigationController?.pushViewController(MapViewController(), animated: true)
+        let currentGasStation = gasStations[indexPath.row]
+        self.navigationController?.pushViewController(MapViewController(gasStation: currentGasStation), animated: true)
     }
     
     /*
