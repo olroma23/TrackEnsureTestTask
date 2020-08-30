@@ -51,9 +51,7 @@ class FirestoreService {
             "address": gasStation.address!,
             "supplier": gasStation.supplier!,
             "cost": gasStation.cost!,
-            "quality": gasStation.quality!
-            
-        ]) { error in
+            "quality": gasStation.quality! ]) { error in
             if let error = error {
                 print("Error writing document: \(error)")
             } else {

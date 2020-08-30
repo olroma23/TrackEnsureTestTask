@@ -74,6 +74,7 @@ class MapViewController: UIViewController {
         } else {
             StorageManager.shared.saveObject(newGasStation)
         }
+        
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -100,7 +101,6 @@ class MapViewController: UIViewController {
         self.title = "Edit gas station"
         mapManager.setupPlacemark(gasStation: currentGasStation, mapView: mapView)
     }
-    
 }
 
 //MARK: MKMapViewDelegate

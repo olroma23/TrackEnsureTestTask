@@ -18,7 +18,7 @@ class GasStationTableViewCell: UITableViewCell {
         return lbl
     }()
     
-    let addressLabel : UILabel = {
+    private let addressLabel : UILabel = {
         let lbl = UILabel()
         lbl.textColor = .black
         lbl.font = UIFont.systemFont(ofSize: 14)

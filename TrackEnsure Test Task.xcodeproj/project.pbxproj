@@ -102,15 +102,15 @@
 		EC8F0CF124F951E8004D1EB7 /* TrackEnsure Test Task */ = {
 			isa = PBXGroup;
 			children = (
-				EC8F0D2D24FC2C4F004D1EB7 /* Services */,
-				EC8F0D1124F9BF02004D1EB7 /* Model */,
 				EC8F0D0E24F9A4A0004D1EB7 /* Controller */,
+				EC8F0D1124F9BF02004D1EB7 /* Model */,
+				EC8F0D2D24FC2C4F004D1EB7 /* Service */,
+				EC8F0D1824FA80D1004D1EB7 /* Extensions */,
 				EC8F0CF224F951E8004D1EB7 /* AppDelegate.swift */,
 				EC8F0CF424F951E8004D1EB7 /* SceneDelegate.swift */,
 				EC8F0CFB24F951EC004D1EB7 /* Assets.xcassets */,
 				EC8F0D0024F951EC004D1EB7 /* Info.plist */,
 				EC8F0D2B24FC2610004D1EB7 /* GoogleService-Info.plist */,
-				EC8F0D1824FA80D1004D1EB7 /* Extensions */,
 			);
 			path = "TrackEnsure Test Task";
 			sourceTree = "<group>";
@@ -154,14 +154,14 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
-		EC8F0D2D24FC2C4F004D1EB7 /* Services */ = {
+		EC8F0D2D24FC2C4F004D1EB7 /* Service */ = {
 			isa = PBXGroup;
 			children = (
 				EC8F0D2924FBF2E9004D1EB7 /* StorageManager.swift */,
 				EC8F0D2E24FC2C7C004D1EB7 /* FirestoreService.swift */,
 				EC8F0D2024FAC5A6004D1EB7 /* MapManager.swift */,
 			);
-			path = Services;
+			path = Service;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

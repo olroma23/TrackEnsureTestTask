@@ -9,6 +9,7 @@
 import UIKit
 
 enum Style {
+    
     case name, cost, quality, supplier
 }
 

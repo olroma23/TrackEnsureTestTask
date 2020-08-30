@@ -12,7 +12,7 @@ import RealmSwift
 class GasStationsTableViewController: UITableViewController {
     
     var gasStations: Results<GasStation>!
-    let cellid = "gasStationCell"
+    private let cellid = "gasStationCell"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,16 +23,10 @@ class GasStationsTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.tableView.reloadData()
-    
     }
     
-    private func deployDataToFirestore() {
-
-    }
     
     // MARK: - Table view data source
-    
-    
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return gasStations.isEmpty ? 0 : gasStations.count
@@ -44,7 +38,6 @@ class GasStationsTableViewController: UITableViewController {
         cell.gasStation = currentGasStation
         return cell
     }
-    
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 70
@@ -68,6 +61,8 @@ class GasStationsTableViewController: UITableViewController {
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
+    
+    
     
     
 }

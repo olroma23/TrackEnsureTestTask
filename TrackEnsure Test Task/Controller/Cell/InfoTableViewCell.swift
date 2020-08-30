@@ -18,7 +18,7 @@ class InfoTableViewCell: UITableViewCell {
         return lbl
     }()
     
-    let quantityLabel : UILabel = {
+    private let quantityLabel : UILabel = {
         let lbl = UILabel()
         lbl.textColor = .black
         lbl.font = UIFont.systemFont(ofSize: 14)
@@ -34,7 +34,7 @@ class InfoTableViewCell: UITableViewCell {
         return lbl
     }()
     
-    let supplierlabel : UILabel = {
+    private let supplierlabel : UILabel = {
         let lbl = UILabel()
         lbl.textColor = .black
         lbl.font = UIFont.systemFont(ofSize: 14)
