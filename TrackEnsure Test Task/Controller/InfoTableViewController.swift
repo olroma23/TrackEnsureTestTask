@@ -11,12 +11,13 @@ import UIKit
 class InfoTableViewController: UITableViewController {
     
     let cellid = "infoCell"
-    let gasStations = Bundle.main.decode([GasStation].self, from: "FakeData.json")
+    let gasStations = GasStation()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         tableView.register(InfoTableViewCell.self, forCellReuseIdentifier: cellid)
+        
     }
 
     // MARK: - Table view data source
@@ -24,14 +25,14 @@ class InfoTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return gasStations.count
+        return 5
     }
     
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellid, for: indexPath) as! InfoTableViewCell
-        let currentGasStation = gasStations[indexPath.row]
-        cell.gasStation = currentGasStation
+//        let currentGasStation = gasStations[indexPath.row]
+//        cell.gasStation = currentGasStation
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell
     }

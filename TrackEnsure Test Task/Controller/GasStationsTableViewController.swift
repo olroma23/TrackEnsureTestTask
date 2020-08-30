@@ -7,17 +7,18 @@
 //
 
 import UIKit
+import RealmSwift
 
 class GasStationsTableViewController: UITableViewController {
     
+    var gasStations: Results<GasStation>!
     let cellid = "gasStationCell"
-    let gasStations = Bundle.main.decode([GasStation].self, from: "FakeData.json")
             
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        gasStations = realm.objects(GasStation.self)
         tableView.register(GasStationTableViewCell.self, forCellReuseIdentifier: cellid)
-        
+
     }
 
     // MARK: - Table view data source
@@ -26,14 +27,13 @@ class GasStationsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return gasStations.count
+        return gasStations.isEmpty ? 0 : gasStations.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellid, for: indexPath) as! GasStationTableViewCell
         let currentGasStation = gasStations[indexPath.row]
         cell.gasStation = currentGasStation
-  
         return cell
     }
     
@@ -44,6 +44,7 @@ class GasStationsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let currentGasStation = gasStations[indexPath.row]
+        print(currentGasStation)
         self.navigationController?.pushViewController(MapViewController(gasStation: currentGasStation), animated: true)
     }
     

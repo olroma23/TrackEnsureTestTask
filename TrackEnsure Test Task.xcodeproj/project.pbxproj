@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B4C4D3F878A64D710802DCC /* Pods_TrackEnsure_Test_Task.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5C92D174012ECB35049711B /* Pods_TrackEnsure_Test_Task.framework */; };
 		EC8F0CF324F951E8004D1EB7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F0CF224F951E8004D1EB7 /* AppDelegate.swift */; };
 		EC8F0CF524F951E8004D1EB7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F0CF424F951E8004D1EB7 /* SceneDelegate.swift */; };
 		EC8F0CFC24F951EC004D1EB7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC8F0CFB24F951EC004D1EB7 /* Assets.xcassets */; };
@@ -23,9 +24,13 @@
 		EC8F0D2424FAD049004D1EB7 /* CustomTextFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F0D2324FAD049004D1EB7 /* CustomTextFields.swift */; };
 		EC8F0D2624FAD09E004D1EB7 /* UIImage + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F0D2524FAD09E004D1EB7 /* UIImage + Extension.swift */; };
 		EC8F0D2824FAD46F004D1EB7 /* StackView + Extension .swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F0D2724FAD46F004D1EB7 /* StackView + Extension .swift */; };
+		EC8F0D2A24FBF2E9004D1EB7 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F0D2924FBF2E9004D1EB7 /* StorageManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2D31E2DEE53C4C4EAAD1C00B /* Pods-TrackEnsure Test Task.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrackEnsure Test Task.debug.xcconfig"; path = "Target Support Files/Pods-TrackEnsure Test Task/Pods-TrackEnsure Test Task.debug.xcconfig"; sourceTree = "<group>"; };
+		99FC5FE3920C79908118910F /* Pods-TrackEnsure Test Task.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrackEnsure Test Task.release.xcconfig"; path = "Target Support Files/Pods-TrackEnsure Test Task/Pods-TrackEnsure Test Task.release.xcconfig"; sourceTree = "<group>"; };
+		C5C92D174012ECB35049711B /* Pods_TrackEnsure_Test_Task.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TrackEnsure_Test_Task.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC8F0CEF24F951E8004D1EB7 /* TrackEnsure Test Task.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TrackEnsure Test Task.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC8F0CF224F951E8004D1EB7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EC8F0CF424F951E8004D1EB7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -44,6 +49,7 @@
 		EC8F0D2324FAD049004D1EB7 /* CustomTextFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFields.swift; sourceTree = "<group>"; };
 		EC8F0D2524FAD09E004D1EB7 /* UIImage + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + Extension.swift"; sourceTree = "<group>"; };
 		EC8F0D2724FAD46F004D1EB7 /* StackView + Extension .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StackView + Extension .swift"; sourceTree = "<group>"; };
+		EC8F0D2924FBF2E9004D1EB7 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,17 +57,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B4C4D3F878A64D710802DCC /* Pods_TrackEnsure_Test_Task.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		51A6EA544C1013D814178249 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C5C92D174012ECB35049711B /* Pods_TrackEnsure_Test_Task.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D9F0417CD51C4F6F6CBED3D7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2D31E2DEE53C4C4EAAD1C00B /* Pods-TrackEnsure Test Task.debug.xcconfig */,
+				99FC5FE3920C79908118910F /* Pods-TrackEnsure Test Task.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		EC8F0CE624F951E8004D1EB7 = {
 			isa = PBXGroup;
 			children = (
 				EC8F0CF124F951E8004D1EB7 /* TrackEnsure Test Task */,
 				EC8F0CF024F951E8004D1EB7 /* Products */,
+				D9F0417CD51C4F6F6CBED3D7 /* Pods */,
+				51A6EA544C1013D814178249 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -84,6 +110,7 @@
 				EC8F0CFB24F951EC004D1EB7 /* Assets.xcassets */,
 				EC8F0D0024F951EC004D1EB7 /* Info.plist */,
 				EC8F0D1624FA7967004D1EB7 /* FakeData.json */,
+				EC8F0D2924FBF2E9004D1EB7 /* StorageManager.swift */,
 				EC8F0D1824FA80D1004D1EB7 /* Extensions */,
 			);
 			path = "TrackEnsure Test Task";
@@ -136,9 +163,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EC8F0D0324F951EC004D1EB7 /* Build configuration list for PBXNativeTarget "TrackEnsure Test Task" */;
 			buildPhases = (
+				525105ADFE722F6B665BFF09 /* [CP] Check Pods Manifest.lock */,
 				EC8F0CEB24F951E8004D1EB7 /* Sources */,
 				EC8F0CEC24F951E8004D1EB7 /* Frameworks */,
 				EC8F0CED24F951E8004D1EB7 /* Resources */,
+				E39B3D34BFD571A84C831ABD /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -194,6 +223,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		525105ADFE722F6B665BFF09 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TrackEnsure Test Task-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E39B3D34BFD571A84C831ABD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TrackEnsure Test Task/Pods-TrackEnsure Test Task-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TrackEnsure Test Task/Pods-TrackEnsure Test Task-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TrackEnsure Test Task/Pods-TrackEnsure Test Task-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		EC8F0CEB24F951E8004D1EB7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -211,6 +282,7 @@
 				EC8F0D0B24F994A5004D1EB7 /* GasStationsTableViewController.swift in Sources */,
 				EC8F0CF324F951E8004D1EB7 /* AppDelegate.swift in Sources */,
 				EC8F0CF524F951E8004D1EB7 /* SceneDelegate.swift in Sources */,
+				EC8F0D2A24FBF2E9004D1EB7 /* StorageManager.swift in Sources */,
 				EC8F0D2824FAD46F004D1EB7 /* StackView + Extension .swift in Sources */,
 				EC8F0D1524F9C48F004D1EB7 /* MapViewController.swift in Sources */,
 			);
@@ -335,6 +407,7 @@
 		};
 		EC8F0D0424F951EC004D1EB7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2D31E2DEE53C4C4EAAD1C00B /* Pods-TrackEnsure Test Task.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -354,6 +427,7 @@
 		};
 		EC8F0D0524F951EC004D1EB7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 99FC5FE3920C79908118910F /* Pods-TrackEnsure Test Task.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

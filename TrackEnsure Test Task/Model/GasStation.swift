@@ -6,24 +6,32 @@
 //  Copyright © 2020 Roman Oliinyk. All rights reserved.
 //
 
-import Foundation
+import RealmSwift
 
-struct GasStation: Hashable, Decodable {
+
+class GasStation: Object {
     
-    let name: String
-    let address: String
-    let supplier: String
-    let cost: Double
-    let quality: Int
-    let id: String
+    @objc dynamic var name = ""
+    @objc dynamic var address: String?
+    @objc dynamic var supplier: String?
+    @objc dynamic var cost: String?
+    @objc dynamic var quality: String?
     
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
+    
+//    @objc dynamic var id: String
+    
+    convenience init(name: String, address: String, supplier: String, cost: String, quality: String) {
+        self.init()
+        self.name = name
+        self.address = address
+        self.supplier = supplier
+        self.cost = cost
+        self.quality = quality
     }
     
-    static func == (lhs: GasStation, rhs: GasStation) -> Bool {
-        return lhs.id == rhs.id
-    }
+
+    
+    
     
 }
 

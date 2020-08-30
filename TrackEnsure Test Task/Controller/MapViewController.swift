@@ -12,7 +12,7 @@ import MapKit
 class MapViewController: UIViewController {
     
     let mapManager = MapManager()
-    var gasStation: GasStation?
+    var currentGasStation: GasStation?
     let containerView = UIView()
     
     let nameTF = CustomTextFields()
@@ -23,14 +23,15 @@ class MapViewController: UIViewController {
     let pinCenterImage = UIImageView()
     var addressLabel = UILabel()
     var changeAddressButton = UIButton(type: .system)
-        
+    
     let mapView = MKMapView()
     
     var isActive = true
     
     init(gasStation: GasStation?) {
         super.init(nibName: nil, bundle: nil)
-        self.gasStation = gasStation
+        guard let currentGasStation = gasStation else { return }
+        self.currentGasStation = currentGasStation
     }
     
     required init?(coder: NSCoder) {
@@ -38,9 +39,8 @@ class MapViewController: UIViewController {
     }
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
-
+        
         setupStyles()
         setupConstraints()
         
@@ -49,14 +49,27 @@ class MapViewController: UIViewController {
         let saveButton = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(saveButtonPressed))
         self.navigationItem.rightBarButtonItem = saveButton
         self.title = "New gas station"
-        configureInfo(currentGasStation: gasStation)
+        configureInfo(currentGasStation: currentGasStation)
         
         changeAddressButton.addTarget(self, action: #selector(changeAddressButtonPressed), for: .touchUpInside)
         
     }
     
     @objc private func saveButtonPressed() {
-        
+        let newGasStation = GasStation(name: nameTF.text!, address: addressLabel.text!, supplier: supplierTF.text!, cost: priceTF.text!, quality: qualityTF.text!)
+        if currentGasStation != nil {
+            try! realm.write {
+                guard let name = nameTF.text, let price = priceTF.text, let quality = qualityTF.text, let supplier = supplierTF.text, let address = addressLabel.text else { return }
+                currentGasStation?.name = name
+                currentGasStation?.cost = price
+                currentGasStation?.address = address
+                currentGasStation?.quality = quality
+                currentGasStation?.supplier = supplier
+            }
+        } else {
+            StorageManager.shared.saveObject(newGasStation)
+        }
+        self.navigationController?.popViewController(animated: true)
     }
     
     
@@ -72,14 +85,15 @@ class MapViewController: UIViewController {
     
     private func configureInfo(currentGasStation: GasStation?) {
         guard let currentGasStation = currentGasStation else { return }
+        guard let price = currentGasStation.cost, let supplier = currentGasStation.supplier, let quality = currentGasStation.quality, let address = currentGasStation.address else { return }
         isActive = false
         nameTF.text = currentGasStation.name
-        priceTF.text = "\(currentGasStation.cost)"
-        qualityTF.text = "\(currentGasStation.quality)"
-        supplierTF.text = currentGasStation.supplier
-        addressLabel.text = currentGasStation.address
+        priceTF.text = price
+        qualityTF.text = quality
+        supplierTF.text = supplier
+        addressLabel.text = address
         self.title = "Edit gas station"
-        mapManager.setupPlacemark(gasStation: gasStation, mapView: mapView)
+        mapManager.setupPlacemark(gasStation: currentGasStation, mapView: mapView)
     }
     
 }
@@ -94,7 +108,7 @@ extension MapViewController: MKMapViewDelegate {
             
             changeAddressButton.isHidden = true
             pinCenterImage.image = UIImage(systemName: "mappin", withConfiguration: UIImage.SymbolConfiguration(weight: .regular))?.withTintColor(.systemIndigo, renderingMode: .alwaysOriginal)
-
+            
             let location = mapManager.getCenterLocation(for: mapView)
             let geocoder = CLGeocoder()
             
@@ -167,7 +181,7 @@ extension MapViewController {
         changeAddressButton.translatesAutoresizingMaskIntoConstraints = false
         mapView.addSubview(changeAddressButton)
         changeAddressButton.setTitle("Change address", for: .normal)
-
+        
         
     }
     
