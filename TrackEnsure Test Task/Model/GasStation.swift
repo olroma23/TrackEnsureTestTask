@@ -17,9 +17,8 @@ class GasStation: Object {
     @objc dynamic var cost: String?
     @objc dynamic var quality: String?
     @objc dynamic var uuid = UUID().uuidString
-
     
-    
+    // data representation for Firestore
     var representation: [String: Any] {
         var rep = ["name": name]
         rep["address"] = address
@@ -28,7 +27,6 @@ class GasStation: Object {
         rep["quality"] = quality
         return rep
     }
-    
     
     convenience init(name: String, address: String, supplier: String, cost: String, quality: String) {
         self.init()
