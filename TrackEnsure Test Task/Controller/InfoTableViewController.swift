@@ -23,6 +23,8 @@ class InfoTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.tableView.reloadData()
+        tableView.backgroundColor = .systemBackground
+
     }
 
     // MARK: - Table view data source

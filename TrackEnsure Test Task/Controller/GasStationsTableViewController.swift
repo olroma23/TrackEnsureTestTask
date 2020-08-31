@@ -18,7 +18,7 @@ class GasStationsTableViewController: UITableViewController {
         super.viewDidLoad()
         gasStations = realm.objects(GasStation.self)
         tableView.register(GasStationTableViewCell.self, forCellReuseIdentifier: cellid)
-        
+        tableView.backgroundColor = .systemBackground
     }
     
     override func viewWillAppear(_ animated: Bool) {

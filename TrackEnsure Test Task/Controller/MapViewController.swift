@@ -16,7 +16,7 @@ class MapViewController: UIViewController {
     let containerView = UIView()
     
     let nameTF = CustomTextFields()
-    let priceTF = CustomTextFields()
+    let costTF = CustomTextFields()
     let qualityTF = CustomTextFields()
     let supplierTF = CustomTextFields()
     
@@ -41,6 +41,9 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        qualityTF.keyboardType = UIKeyboardType.numberPad
+        costTF.keyboardType = UIKeyboardType.decimalPad
+        
         setupStyles()
         setupConstraints()
         
@@ -56,18 +59,29 @@ class MapViewController: UIViewController {
     }
     
     @objc private func saveButtonPressed() {
-                
-        let newGasStation = GasStation(name: nameTF.text!, address: addressLabel.text!, supplier: supplierTF.text!, cost: priceTF.text!, quality: qualityTF.text!)
+        
+        guard Validators.isFilled(name: nameTF.text!, quality: qualityTF.text!, cost: costTF.text!, supplier: supplierTF.text!) else {
+            self.showAlert(title: "Error", message: "Please, fill all fields")
+            return
+        }
+        
+        guard Validators.qualityIsValid(quality: qualityTF.text!) else {
+            self.showAlert(title: "Error", message: "Please, rate from 1 to 5")
+            return
+        }
+        
+        guard let costDouble = costTF.text?.doubleValue else { return }
+        
+        let newGasStation = GasStation(name: nameTF.text!, address: addressLabel.text!, supplier: supplierTF.text!, cost: "\(costDouble)", quality: qualityTF.text!)
         
         if currentGasStation != nil {
-                    
+            
             try! realm.write {
-                guard let name = nameTF.text, let price = priceTF.text, let quality = qualityTF.text, let supplier = supplierTF.text, let address = addressLabel.text else { return }
-                currentGasStation?.name = name
-                currentGasStation?.cost = price
-                currentGasStation?.address = address
-                currentGasStation?.quality = quality
-                currentGasStation?.supplier = supplier
+                currentGasStation?.name = nameTF.text!
+                currentGasStation?.cost = "\(costDouble)"
+                currentGasStation?.address = addressLabel.text
+                currentGasStation?.quality = qualityTF.text
+                currentGasStation?.supplier = supplierTF.text
                 FirestoreService.shared.editData(gasStation: currentGasStation!)
             }
             
@@ -77,6 +91,7 @@ class MapViewController: UIViewController {
         
         self.navigationController?.popViewController(animated: true)
     }
+    
     
     
     @objc private func changeAddressButtonPressed() {
@@ -91,10 +106,10 @@ class MapViewController: UIViewController {
     
     private func configureInfo(currentGasStation: GasStation?) {
         guard let currentGasStation = currentGasStation else { return }
-        guard let price = currentGasStation.cost, let supplier = currentGasStation.supplier, let quality = currentGasStation.quality, let address = currentGasStation.address else { return }
+        guard let cost = currentGasStation.cost, let supplier = currentGasStation.supplier, let quality = currentGasStation.quality, let address = currentGasStation.address else { return }
         isActive = false
         nameTF.text = currentGasStation.name
-        priceTF.text = price
+        costTF.text = cost
         qualityTF.text = quality
         supplierTF.text = supplier
         addressLabel.text = address
@@ -103,7 +118,8 @@ class MapViewController: UIViewController {
     }
 }
 
-//MARK: MKMapViewDelegate
+
+//MARK: - MKMapViewDelegate
 
 extension MapViewController: MKMapViewDelegate {
     
@@ -148,7 +164,7 @@ extension MapViewController: MKMapViewDelegate {
 }
 
 
-// MARK: Setup Constraints and Styles
+// MARK: - Setup Constraints and Styles
 
 extension MapViewController {
     
@@ -161,17 +177,19 @@ extension MapViewController {
         
         containerView.layer.cornerRadius = 10
         containerView.clipsToBounds = true
+        containerView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+
         
         let blurredView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
         blurredView.frame = self.view.bounds
-        blurredView.backgroundColor = .white
-        blurredView.alpha = 0.7
+        blurredView.backgroundColor = .systemBackground
+        blurredView.alpha = 0.65
         
         containerView.addSubview(blurredView)
         
         nameTF.applyStyles(style: .name, placeholder: "Enter the name")
         qualityTF.applyStyles(style: .quality, placeholder: "Quality (1-5)")
-        priceTF.applyStyles(style: .cost, placeholder: "Enter the price of 1lit.")
+        costTF.applyStyles(style: .cost, placeholder: "Enter the cost of 1lit.")
         supplierTF.applyStyles(style: .supplier, placeholder: "Enter the supplier")
         
         pinCenterImage.translatesAutoresizingMaskIntoConstraints = false
@@ -180,7 +198,7 @@ extension MapViewController {
         addressLabel.translatesAutoresizingMaskIntoConstraints = false
         mapView.addSubview(addressLabel)
         addressLabel.font = UIFont.boldSystemFont(ofSize: 15)
-        addressLabel.textColor = .black
+        addressLabel.textColor = .label
         addressLabel.text = "Choose an address"
         
         changeAddressButton.translatesAutoresizingMaskIntoConstraints = false
@@ -192,7 +210,7 @@ extension MapViewController {
     
     private func setupConstraints() {
         
-        let stackView = UIStackView(arrangedSubviews: [nameTF, qualityTF, priceTF, supplierTF],
+        let stackView = UIStackView(arrangedSubviews: [nameTF, qualityTF, costTF, supplierTF],
                                     axis: .vertical,
                                     spacing: 10)
         view.addSubview(stackView)
@@ -224,4 +242,16 @@ extension MapViewController {
         ])
     }
     
+}
+
+
+// MARK: - Show Alert
+
+extension MapViewController {
+    private func showAlert(title: String, message: String) {
+        let ac = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .default)
+        ac.addAction(okAction)
+        present(ac, animated: true)
+    }
 }

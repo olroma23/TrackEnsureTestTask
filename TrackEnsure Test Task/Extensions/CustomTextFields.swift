@@ -19,16 +19,17 @@ class CustomTextFields: UITextField {
         super.init(frame: frame)
         self.translatesAutoresizingMaskIntoConstraints = false
         self.heightAnchor.constraint(equalToConstant: 40).isActive = true
-    }
-        
-    func applyStyles(style: Style, placeholder: String) {
-        
-        self.placeholder = placeholder
         self.font = UIFont.systemFont(ofSize: 14)
         self.clearButtonMode = .whileEditing
         self.layer.cornerRadius = 18
         self.layer.masksToBounds = true
         self.borderStyle = .none
+        self.backgroundColor = .systemRed
+    }
+        
+    func applyStyles(style: Style, placeholder: String) {
+        
+        self.placeholder = placeholder
         
         var image: UIImage!
         var imageView: UIImageView!
@@ -57,6 +58,7 @@ class CustomTextFields: UITextField {
         
         self.leftView = imageView
         self.leftView?.frame = CGRect(x: 0, y: 0, width: 19, height: 19)
+        self.leftView?.alpha = 0.5
         leftViewMode = .always
         
         let button = UIButton(type: .system)
@@ -67,20 +69,20 @@ class CustomTextFields: UITextField {
     
     
     override func textRect(forBounds bounds: CGRect) -> CGRect {
-        return bounds.insetBy(dx: 36, dy: 0)
+        return bounds.insetBy(dx: 45, dy: 0)
     }
     
     override func placeholderRect(forBounds bounds: CGRect) -> CGRect {
-        return bounds.insetBy(dx: 36, dy: 0)
+        return bounds.insetBy(dx: 45, dy: 0)
     }
     
     override func editingRect(forBounds bounds: CGRect) -> CGRect {
-        return bounds.insetBy(dx: 36, dy: 0)
+        return bounds.insetBy(dx: 45, dy: 0)
     }
     
     override func leftViewRect(forBounds bounds: CGRect) -> CGRect {
         var rect = super.leftViewRect(forBounds: bounds)
-        rect.origin.x += 5
+        rect.origin.x += 12
         return rect
     }
     

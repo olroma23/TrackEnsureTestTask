@@ -12,7 +12,7 @@ class GasStationTableViewCell: UITableViewCell {
     
     private let nameLabel : UILabel = {
         let lbl = UILabel()
-        lbl.textColor = .systemGray
+        lbl.textColor = .label
         lbl.font = UIFont.boldSystemFont(ofSize: 15)
         lbl.textAlignment = .left
         return lbl
@@ -20,7 +20,7 @@ class GasStationTableViewCell: UITableViewCell {
     
     private let addressLabel : UILabel = {
         let lbl = UILabel()
-        lbl.textColor = .black
+        lbl.textColor = .label
         lbl.font = UIFont.systemFont(ofSize: 14)
         lbl.textAlignment = .left
         return lbl
@@ -37,6 +37,7 @@ class GasStationTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupConstraints()
+        self.backgroundColor = .systemBackground
     }
     
     required init?(coder: NSCoder) {
