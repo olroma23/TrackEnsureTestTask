@@ -23,6 +23,7 @@ class MapViewController: UIViewController {
     let pinCenterImage = UIImageView()
     var addressLabel = UILabel()
     var changeAddressButton = UIButton(type: .system)
+    let locationButton = UIButton(type: .system)
     
     let mapView = MKMapView()
     
@@ -55,6 +56,8 @@ class MapViewController: UIViewController {
         configureInfo(currentGasStation: currentGasStation)
         
         changeAddressButton.addTarget(self, action: #selector(changeAddressButtonPressed), for: .touchUpInside)
+        
+        locationButton.addTarget(self, action: #selector(locationButtonPressed), for: .touchUpInside)
         
     }
     
@@ -92,12 +95,16 @@ class MapViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
-    
-    
     @objc private func changeAddressButtonPressed() {
         isActive = true
         pinCenterImage.image = UIImage(systemName: "mappin", withConfiguration: UIImage.SymbolConfiguration(weight: .regular))?.withTintColor(.systemIndigo, renderingMode: .alwaysOriginal)
         changeAddressButton.isHidden = true
+    }
+    
+    @objc private func locationButtonPressed() {
+        mapManager.checkLocationServices(mapView: mapView) {
+            mapManager.showUserLocation(mapView: mapView)
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -145,6 +152,8 @@ extension MapViewController: MKMapViewDelegate {
                 let placemark = placemarks.first
                 let streetName = placemark?.thoroughfare
                 let buildNum = placemark?.subThoroughfare
+                let latitude = placemark?.location?.coordinate.latitude
+                let longitude = placemark?.location?.coordinate.longitude
                 
                 DispatchQueue.main.async {
                     if streetName != nil && buildNum != nil {
@@ -152,13 +161,12 @@ extension MapViewController: MKMapViewDelegate {
                     } else if streetName != nil {
                         self.addressLabel.text = "\(streetName!)"
                     } else {
-                        self.addressLabel.text = "Choose an address"
+                        self.addressLabel.text = "\(latitude!)" + ", " + "\(longitude!)"
                     }
                 }
             }
         }
     }
-    
     
     
 }
@@ -178,7 +186,7 @@ extension MapViewController {
         containerView.layer.cornerRadius = 10
         containerView.clipsToBounds = true
         containerView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
-
+        
         
         let blurredView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
         blurredView.frame = self.view.bounds
@@ -205,6 +213,10 @@ extension MapViewController {
         mapView.addSubview(changeAddressButton)
         changeAddressButton.setTitle("Change address", for: .normal)
         
+        let locationImage = UIImage(systemName: "location", withConfiguration: UIImage.SymbolConfiguration(weight: .bold))?.withTintColor(.systemBlue, renderingMode: .alwaysOriginal)
+        locationButton.setImage(locationImage, for: .normal)
+        locationButton.translatesAutoresizingMaskIntoConstraints = false
+        mapView.addSubview(locationButton)
         
     }
     
@@ -238,7 +250,10 @@ extension MapViewController {
             addressLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30),
             
             changeAddressButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            changeAddressButton.topAnchor.constraint(equalTo: addressLabel.topAnchor, constant: -50)
+            changeAddressButton.topAnchor.constraint(equalTo: addressLabel.topAnchor, constant: -50),
+            
+            locationButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -30),
+            locationButton.topAnchor.constraint(equalTo: containerView.bottomAnchor, constant: 30)
         ])
     }
     

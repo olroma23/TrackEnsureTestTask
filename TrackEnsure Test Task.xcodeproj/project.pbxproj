@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		4B4C4D3F878A64D710802DCC /* Pods_TrackEnsure_Test_Task.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5C92D174012ECB35049711B /* Pods_TrackEnsure_Test_Task.framework */; };
 		EC384D8B24FD62AF00C305C1 /* Validators.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC384D8A24FD62AF00C305C1 /* Validators.swift */; };
-		EC384D8D24FD652900C305C1 /* FieldErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC384D8C24FD652900C305C1 /* FieldErrors.swift */; };
 		EC384D8F24FD8FBE00C305C1 /* String + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC384D8E24FD8FBE00C305C1 /* String + Extension.swift */; };
+		EC384D9124FDAE3F00C305C1 /* UIViewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC384D9024FDAE3F00C305C1 /* UIViewController + Extension.swift */; };
 		EC8F0CF324F951E8004D1EB7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F0CF224F951E8004D1EB7 /* AppDelegate.swift */; };
 		EC8F0CF524F951E8004D1EB7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F0CF424F951E8004D1EB7 /* SceneDelegate.swift */; };
 		EC8F0CFC24F951EC004D1EB7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC8F0CFB24F951EC004D1EB7 /* Assets.xcassets */; };
@@ -35,8 +35,8 @@
 		99FC5FE3920C79908118910F /* Pods-TrackEnsure Test Task.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrackEnsure Test Task.release.xcconfig"; path = "Target Support Files/Pods-TrackEnsure Test Task/Pods-TrackEnsure Test Task.release.xcconfig"; sourceTree = "<group>"; };
 		C5C92D174012ECB35049711B /* Pods_TrackEnsure_Test_Task.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TrackEnsure_Test_Task.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC384D8A24FD62AF00C305C1 /* Validators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validators.swift; sourceTree = "<group>"; };
-		EC384D8C24FD652900C305C1 /* FieldErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldErrors.swift; sourceTree = "<group>"; };
 		EC384D8E24FD8FBE00C305C1 /* String + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Extension.swift"; sourceTree = "<group>"; };
+		EC384D9024FDAE3F00C305C1 /* UIViewController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extension.swift"; sourceTree = "<group>"; };
 		EC8F0CEF24F951E8004D1EB7 /* TrackEnsure Test Task.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TrackEnsure Test Task.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC8F0CF224F951E8004D1EB7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EC8F0CF424F951E8004D1EB7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -91,7 +91,6 @@
 			isa = PBXGroup;
 			children = (
 				EC384D8A24FD62AF00C305C1 /* Validators.swift */,
-				EC384D8C24FD652900C305C1 /* FieldErrors.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -158,6 +157,7 @@
 				EC8F0D2524FAD09E004D1EB7 /* UIImage + Extension.swift */,
 				EC8F0D2724FAD46F004D1EB7 /* StackView + Extension .swift */,
 				EC384D8E24FD8FBE00C305C1 /* String + Extension.swift */,
+				EC384D9024FDAE3F00C305C1 /* UIViewController + Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -305,6 +305,7 @@
 				EC8F0D2F24FC2C7C004D1EB7 /* FirestoreService.swift in Sources */,
 				EC8F0D2124FAC5A7004D1EB7 /* MapManager.swift in Sources */,
 				EC8F0D2624FAD09E004D1EB7 /* UIImage + Extension.swift in Sources */,
+				EC384D9124FDAE3F00C305C1 /* UIViewController + Extension.swift in Sources */,
 				EC8F0D0B24F994A5004D1EB7 /* GasStationsTableViewController.swift in Sources */,
 				EC8F0CF324F951E8004D1EB7 /* AppDelegate.swift in Sources */,
 				EC8F0CF524F951E8004D1EB7 /* SceneDelegate.swift in Sources */,
@@ -312,7 +313,6 @@
 				EC384D8F24FD8FBE00C305C1 /* String + Extension.swift in Sources */,
 				EC8F0D2824FAD46F004D1EB7 /* StackView + Extension .swift in Sources */,
 				EC8F0D1524F9C48F004D1EB7 /* MapViewController.swift in Sources */,
-				EC384D8D24FD652900C305C1 /* FieldErrors.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
