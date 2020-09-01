@@ -10,7 +10,7 @@ import UIKit
 
 class InfoTableViewCell: UITableViewCell {
 
-    private let nameLabel : UILabel = {
+     let nameLabel : UILabel = {
         let lbl = UILabel()
         lbl.textColor = .label
         lbl.font = UIFont.boldSystemFont(ofSize: 15)

@@ -79,7 +79,7 @@ class MapViewController: UIViewController {
     
     @objc private func saveButtonPressed() {
         
-        guard Validators.isFilled(name: nameTF.text!, quality: qualityTF.text!, cost: costTF.text!, supplier: supplierTF.text!) else {
+        guard Validators.isFilled(name: nameTF.text!, quality: qualityTF.text!, cost: costTF.text!, supplier: supplierTF.text!, address: addressLabel.text) else {
             self.showAlert(title: "Error", message: "Please, fill all fields")
             return
         }
@@ -89,7 +89,15 @@ class MapViewController: UIViewController {
             return
         }
         
-        guard let costDouble = costTF.text?.doubleValue else { return }
+        guard let costDouble = costTF.text?.doubleValue, costDouble != 0.0 else {
+            showAlert(title: "Error", message: "Please, enter correct price")
+            return
+        }
+        
+        guard Validators.addressIsValid(address: addressLabel.text) else {
+            self.showAlert(title: "Error", message: "Please, choose valid address")
+            return
+        }
         
         let newGasStation = GasStation(name: nameTF.text!, address: addressLabel.text!, supplier: supplierTF.text!, cost: "\(costDouble)", quality: qualityTF.text!)
         
@@ -322,11 +330,3 @@ extension MapViewController {
         present(ac, animated: true)
     }
 }
-
-extension MapViewController: UIGestureRecognizerDelegate {
-    
-}
-
-
-
-

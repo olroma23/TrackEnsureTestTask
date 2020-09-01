@@ -22,4 +22,9 @@ extension String {
         }
         return 0
     }
+    
+     func areLettersHere() -> Bool {
+         return self.rangeOfCharacter(from: CharacterSet.letters) != nil && self != ""
+     }
+
 }

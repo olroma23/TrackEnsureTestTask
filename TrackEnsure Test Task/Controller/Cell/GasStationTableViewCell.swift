@@ -18,7 +18,7 @@ class GasStationTableViewCell: UITableViewCell {
         return lbl
     }()
     
-    private let addressLabel : UILabel = {
+    private let supplierLabel : UILabel = {
         let lbl = UILabel()
         lbl.textColor = .label
         lbl.font = UIFont.systemFont(ofSize: 14)
@@ -29,10 +29,9 @@ class GasStationTableViewCell: UITableViewCell {
     var gasStation : GasStation? {
         didSet {
             nameLabel.text = gasStation!.name
-            addressLabel.text = gasStation!.address
+            supplierLabel.text = gasStation!.supplier
         }
     }
-    
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -59,18 +58,18 @@ class GasStationTableViewCell: UITableViewCell {
     
     private func setupConstraints() {
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        addressLabel.translatesAutoresizingMaskIntoConstraints = false
+        supplierLabel.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(nameLabel)
-        self.addSubview(addressLabel)
+        self.addSubview(supplierLabel)
         
         NSLayoutConstraint.activate([
             nameLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 15),
             nameLabel.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 30),
             nameLabel.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: 30),
             
-            addressLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 10),
-            addressLabel.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 30),
-            addressLabel.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: 30),
+            supplierLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 10),
+            supplierLabel.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 30),
+            supplierLabel.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: 30),
         ])
     }
     

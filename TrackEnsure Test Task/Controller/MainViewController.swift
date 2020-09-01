@@ -12,6 +12,7 @@ class MainViewController: UIViewController {
     
     let items = ["Gas stations", "Info"]
     var switchView: UISegmentedControl?
+    var segmentedContoller: UISegmentedControl!
     let gasStationsViewController = GasStationsTableViewController()
     let infoViewController = InfoTableViewController()
     
@@ -20,7 +21,6 @@ class MainViewController: UIViewController {
         
         view.backgroundColor = .systemBackground
         
-        addChildControllers()
         setupSegmentedController()
         setupConstraints()
         
@@ -28,33 +28,45 @@ class MainViewController: UIViewController {
         
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewGasStation))
         self.navigationItem.rightBarButtonItem = addButton
-
+        
+        addChildControllers()
         
     }
     
     
     private func addChildControllers() {
-        self.addChild(gasStationsViewController)
-        self.addChild(infoViewController)
+        addChildVC(vc: gasStationsViewController)
     }
     
+    private func addChildVC(vc: UIViewController) {
+        
+        guard let vcView = vc.view else { return }
+         view.addSubview(vcView)
+         vcView.translatesAutoresizingMaskIntoConstraints = false
+         NSLayoutConstraint.activate([
+             vcView.topAnchor.constraint(equalTo: segmentedContoller.bottomAnchor, constant: 30),
+             vcView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+             vcView.widthAnchor.constraint(equalToConstant: view.frame.width)
+         ])
+        
+        self.addChild(vc)
+        vc.didMove(toParent: self)
+        
+    }
     
     private func setupSegmentedController() {
         switchView = UISegmentedControl(items: items)
         switchView?.selectedSegmentIndex = 0
-        gasStationsViewController.view.alpha = 1
-        infoViewController.view.alpha = 0
         switchView?.addTarget(self, action: #selector(segmentControl), for: .valueChanged)
     }
     
     @objc private func segmentControl() {
         switch switchView?.selectedSegmentIndex {
         case 0:
-            gasStationsViewController.view.alpha = 1
-            infoViewController.view.alpha = 0
+            self.addChildControllers()
         case 1:
-            gasStationsViewController.view.alpha = 0
-            infoViewController.view.alpha = 1
+            self.removeChild()
+            self.addChildVC(vc: infoViewController)
         default:
             print("Smth wrong")
         }
@@ -69,7 +81,7 @@ class MainViewController: UIViewController {
     private func setupConstraints() {
         
         // segmentedControll
-        guard let segmentedContoller = switchView else { return }
+        segmentedContoller = switchView
         view.addSubview(segmentedContoller)
         segmentedContoller.translatesAutoresizingMaskIntoConstraints = false
         
@@ -87,15 +99,6 @@ class MainViewController: UIViewController {
             gasStationsView.topAnchor.constraint(equalTo: segmentedContoller.bottomAnchor, constant: 30),
             gasStationsView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             gasStationsView.widthAnchor.constraint(equalToConstant: view.frame.width)
-        ])
-        
-        guard let infoView = infoViewController.view else { return }
-        view.addSubview(infoView)
-        infoView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            infoView.topAnchor.constraint(equalTo: segmentedContoller.bottomAnchor, constant: 30),
-            infoView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            infoView.widthAnchor.constraint(equalToConstant: view.frame.width)
         ])
         
     }
@@ -123,6 +126,21 @@ struct MainViewControllerProvider: PreviewProvider {
         
         func updateUIViewController(_ uiViewController: MainViewController, context: Context) {
             
+        }
+    }
+}
+
+
+extension UIViewController {
+
+    func removeChild() {
+        guard parent != nil else {
+             return
+         }
+        self.children.forEach {
+            $0.willMove(toParent: nil)
+            $0.view.removeFromSuperview()
+            $0.removeFromParent()
         }
     }
 }

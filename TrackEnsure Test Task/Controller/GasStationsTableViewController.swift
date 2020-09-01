@@ -45,7 +45,6 @@ class GasStationsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let currentGasStation = gasStations[indexPath.row]
-        print(currentGasStation)
         self.navigationController?.pushViewController(MapViewController(gasStation: currentGasStation), animated: true)
     }
     

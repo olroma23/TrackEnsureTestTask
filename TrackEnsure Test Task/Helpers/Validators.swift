@@ -15,15 +15,17 @@ enum TypeOfField {
 
 class Validators {
     
-    static func isFilled(name: String?, quality: String?, cost: String?, supplier: String?) -> Bool {
+    static func isFilled(name: String?, quality: String?, cost: String?, supplier: String?, address: String?) -> Bool {
         guard let name = name,
             let quality = quality,
             let cost = cost,
             let supplier = supplier,
+            let address = address,
             name != "",
             quality != "",
             cost != "",
-            supplier != ""
+            supplier != "",
+            address != "Choose an address"
             else { return false }
         return true
     }
@@ -36,12 +38,6 @@ class Validators {
     }
     
     
-    static func costIsValid(cost: String?) -> Bool {
-        
-        return true
-    }
-    
-    
     static func emailIsValid(email: String?) -> Bool {
         guard let email = email else { return false }
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
@@ -49,4 +45,8 @@ class Validators {
         return emailPred.evaluate(with: email)
     }
     
+    static func addressIsValid(address: String?) -> Bool {
+        guard let address = address else { return false }
+        return address.areLettersHere()
+    }
 }
