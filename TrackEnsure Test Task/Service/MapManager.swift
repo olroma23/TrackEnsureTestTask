@@ -9,7 +9,6 @@
 import UIKit
 import MapKit
 
-
 class MapManager {
     
     private let locationManager = CLLocationManager()
@@ -41,6 +40,18 @@ class MapManager {
             mapView.selectAnnotation(annotation, animated: true)
         }
     }
+    
+     func setupPlacemark(location: CLLocation, mapView: MKMapView) {
+        
+        let annotation = MKPointAnnotation()
+        
+        annotation.coordinate = location.coordinate
+        self.placeCoordinate = location.coordinate
+        
+        mapView.showAnnotations([annotation], animated: true)
+        mapView.selectAnnotation(annotation, animated: true)
+    }
+    
     
     //    Focus map on user location
     func showUserLocation(mapView: MKMapView) {
@@ -88,6 +99,17 @@ class MapManager {
             print("new case is available")
         }
     }
+    
+    func addressOnTap(tapOnMap: UITapGestureRecognizer, mapView: MKMapView) -> CLLocation {
+        let location = tapOnMap.location(in: mapView)
+        let coordinates = mapView.convert(location, toCoordinateFrom: mapView)
+        let latitude = coordinates.latitude
+        let longitude = coordinates.longitude
+        let clLocation = CLLocation(latitude: latitude, longitude: longitude)
+        return clLocation
+    }
+    
+    // Show location by tap
     
     
     private func showAlert(title: String, message: String) {

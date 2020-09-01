@@ -20,7 +20,6 @@ class MapViewController: UIViewController {
     let qualityTF = CustomTextFields()
     let supplierTF = CustomTextFields()
     
-    let pinCenterImage = UIImageView()
     var addressLabel = UILabel()
     var changeAddressButton = UIButton(type: .system)
     let locationButton = UIButton(type: .system)
@@ -28,6 +27,8 @@ class MapViewController: UIViewController {
     let mapView = MKMapView()
     
     var isActive = true
+    
+    var tapOnMap: UITapGestureRecognizer!
     
     init(gasStation: GasStation?) {
         super.init(nibName: nil, bundle: nil)
@@ -48,7 +49,7 @@ class MapViewController: UIViewController {
         setupStyles()
         setupConstraints()
         
-        mapView.delegate = self
+        //        mapView.delegate = self
         
         let saveButton = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(saveButtonPressed))
         self.navigationItem.rightBarButtonItem = saveButton
@@ -58,6 +59,21 @@ class MapViewController: UIViewController {
         changeAddressButton.addTarget(self, action: #selector(changeAddressButtonPressed), for: .touchUpInside)
         
         locationButton.addTarget(self, action: #selector(locationButtonPressed), for: .touchUpInside)
+        
+        tapOnMap = UITapGestureRecognizer(target: self, action: #selector(tapOnMapAction))
+        tapOnMap.numberOfTapsRequired = 1
+        self.mapView.addGestureRecognizer(tapOnMap)
+        
+        if !isActive {
+            changeAddressButton.isHidden = false
+        } else {
+            changeAddressButton.isHidden = true
+        }
+    }
+    
+    @objc private func tapOnMapAction(tapOnMap: UITapGestureRecognizer){
+        
+        getAddressByTap(tapOnMap: tapOnMap, mapView: mapView)
         
     }
     
@@ -97,7 +113,6 @@ class MapViewController: UIViewController {
     
     @objc private func changeAddressButtonPressed() {
         isActive = true
-        pinCenterImage.image = UIImage(systemName: "mappin", withConfiguration: UIImage.SymbolConfiguration(weight: .regular))?.withTintColor(.systemIndigo, renderingMode: .alwaysOriginal)
         changeAddressButton.isHidden = true
     }
     
@@ -123,21 +138,15 @@ class MapViewController: UIViewController {
         self.title = "Edit gas station"
         mapManager.setupPlacemark(gasStation: currentGasStation, mapView: mapView)
     }
-}
-
-
-//MARK: - MKMapViewDelegate
-
-extension MapViewController: MKMapViewDelegate {
     
-    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+    private func getAddressByTap(tapOnMap: UITapGestureRecognizer, mapView: MKMapView) {
         
         if isActive {
             
             changeAddressButton.isHidden = true
-            pinCenterImage.image = UIImage(systemName: "mappin", withConfiguration: UIImage.SymbolConfiguration(weight: .regular))?.withTintColor(.systemIndigo, renderingMode: .alwaysOriginal)
             
-            let location = mapManager.getCenterLocation(for: mapView)
+            let location = mapManager.addressOnTap(tapOnMap: tapOnMap, mapView: mapView)
+            
             let geocoder = CLGeocoder()
             
             geocoder.cancelGeocode()
@@ -156,6 +165,8 @@ extension MapViewController: MKMapViewDelegate {
                 let longitude = placemark?.location?.coordinate.longitude
                 
                 DispatchQueue.main.async {
+                    mapView.removeAnnotations(mapView.annotations)
+                    self.mapManager.setupPlacemark(location: location, mapView: mapView)
                     if streetName != nil && buildNum != nil {
                         self.addressLabel.text = "\(streetName!), \(buildNum!)"
                     } else if streetName != nil {
@@ -169,7 +180,54 @@ extension MapViewController: MKMapViewDelegate {
     }
     
     
+    
 }
+
+
+//MARK: - MKMapViewDelegate
+
+//extension MapViewController: MKMapViewDelegate {
+//
+//    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+//
+//                if isActive {
+//
+//                    changeAddressButton.isHidden = true
+//                    pinCenterImage.image = UIImage(systemName: "mappin", withConfiguration: UIImage.SymbolConfiguration(weight: .regular))?.withTintColor(.systemIndigo, renderingMode: .alwaysOriginal)
+//
+//                    let location = mapManager.getCenterLocation(for: mapView)
+//                    let geocoder = CLGeocoder()
+//
+//                    geocoder.cancelGeocode()
+//
+//                    geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
+//                        if let error = error {
+//                            print(error)
+//                            return
+//                        }
+//
+//                        guard let placemarks = placemarks else { return }
+//                        let placemark = placemarks.first
+//                        let streetName = placemark?.thoroughfare
+//                        let buildNum = placemark?.subThoroughfare
+//                        let latitude = placemark?.location?.coordinate.latitude
+//                        let longitude = placemark?.location?.coordinate.longitude
+//
+//                        DispatchQueue.main.async {
+//                            if streetName != nil && buildNum != nil {
+//                                self.addressLabel.text = "\(streetName!), \(buildNum!)"
+//                            } else if streetName != nil {
+//                                self.addressLabel.text = "\(streetName!)"
+//                            } else {
+//                                self.addressLabel.text = "\(latitude!)" + ", " + "\(longitude!)"
+//                            }
+//                        }
+//                    }
+//                }
+//    }
+//
+//
+//}
 
 
 // MARK: - Setup Constraints and Styles
@@ -199,9 +257,6 @@ extension MapViewController {
         qualityTF.applyStyles(style: .quality, placeholder: "Quality (1-5)")
         costTF.applyStyles(style: .cost, placeholder: "Enter the cost of 1lit.")
         supplierTF.applyStyles(style: .supplier, placeholder: "Enter the supplier")
-        
-        pinCenterImage.translatesAutoresizingMaskIntoConstraints = false
-        mapView.addSubview(pinCenterImage)
         
         addressLabel.translatesAutoresizingMaskIntoConstraints = false
         mapView.addSubview(addressLabel)
@@ -243,9 +298,6 @@ extension MapViewController {
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
             
-            pinCenterImage.centerYAnchor.constraint(equalTo: mapView.centerYAnchor, constant: 20),
-            pinCenterImage.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            
             addressLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             addressLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30),
             
@@ -270,3 +322,11 @@ extension MapViewController {
         present(ac, animated: true)
     }
 }
+
+extension MapViewController: UIGestureRecognizerDelegate {
+    
+}
+
+
+
+
