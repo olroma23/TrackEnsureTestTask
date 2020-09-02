@@ -31,6 +31,7 @@ class InfoTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
         realm.refresh()
         configDataSource()
         //                  Observe Results Notifications
@@ -82,7 +83,7 @@ class InfoTableViewController: UITableViewController {
             print("-----------")
         })
                 
-        
+        tableView.reloadData()
     }
     
     

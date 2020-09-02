@@ -103,6 +103,15 @@ class MapViewController: UIViewController {
         
         if currentGasStation != nil {
             
+            FirestoreService.shared.deleteGasStation(gasStation: currentGasStation!) { (result) in
+                switch result {
+                case .success():
+                    print("Successfully deleted")
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+            
             try! realm.write {
                 currentGasStation?.name = nameTF.text!
                 currentGasStation?.cost = "\(costDouble)"

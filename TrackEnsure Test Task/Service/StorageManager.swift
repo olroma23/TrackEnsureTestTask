@@ -18,7 +18,7 @@ class StorageManager {
     func saveObject(_ gasStation: GasStation) {
         
         try! realm.write {
-            realm.add(gasStation)
+            realm.add(gasStation, update: .all)
         }
         
         FirestoreService.shared.saveGasStationWith(gasStation: gasStation) { (result) in
@@ -31,7 +31,7 @@ class StorageManager {
         }
     }
     
-    func saveObject(gasStation: GasStation, update: Bool) {
+    func saveOldObject(gasStation: GasStation, update: Bool) {
         
       try! realm.write {
         realm.add(gasStation, update: .modified)

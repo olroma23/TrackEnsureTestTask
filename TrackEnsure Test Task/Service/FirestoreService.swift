@@ -43,10 +43,8 @@ class FirestoreService {
         }
     }
     
-    
     func editData(gasStation: GasStation) {
         let gasStationDocumentName = [gasStation.name, gasStation.uuid].joined(separator: " ")
-        
         self.gasStationRef.document(gasStationDocumentName).setData([
             "name": gasStation.name,
             "address": gasStation.address!,
@@ -60,9 +58,7 @@ class FirestoreService {
                     print("Document successfully rewritten!")
                 }
         }
-        
     }
-    
     
     func syncData(completion: @escaping(Result<Void, Error>) -> ()) {
         
@@ -79,47 +75,35 @@ class FirestoreService {
                                            cost: data["cost"]! as! String,
                                            quality: data["quality"]! as! String,
                                            uuid: data["uuid"]! as! String )
-                StorageManager.shared.saveObject(gasStation: dataModel, update: true)
-
+                StorageManager.shared.saveOldObject(gasStation: dataModel, update: true)
             }
-
             completion(.success(Void()))
         }
-        
-        
     }
-    
     
     func getData(completion: @escaping(Result<[GasStation], Error>) -> ()) {
-        
 
-        self.gasStationRef.getDocuments { (querySnapshot, error) in
-            var gasStations: [GasStation] = []
-            if let error = error {
-                completion(.failure(error))
-                return
-            }
-            for document in querySnapshot!.documents {
-                let data = document.data()
-                print("data", data)
-                let dataModel = GasStation(name: data["name"]! as! String,
-                                           address: data["address"]! as! String,
-                                           supplier: data["supplier"]! as! String,
-                                           cost: data["cost"]! as! String,
-                                           quality: data["quality"]! as! String,
-                                           uuid: data["uuid"]! as! String )
-                print("dataModel", dataModel)
-                gasStations.append(dataModel)
-
-
-            }
-
-            completion(.success(gasStations))
-        }
-
-
+//        self.gasStationRef.getDocuments { (querySnapshot, error) in
+//            var gasStations: [GasStation] = []
+//            if let error = error {
+//                completion(.failure(error))
+//                return
+//            }
+//            for document in querySnapshot!.documents {
+//                let data = document.data()
+//                print("data", data)
+//                let dataModel = GasStation(name: data["name"]! as! String,
+//                                           address: data["address"]! as! String,
+//                                           supplier: data["supplier"]! as! String,
+//                                           cost: data["cost"]! as! String,
+//                                           quality: data["quality"]! as! String,
+//                                           uuid: data["uuid"]! as! String )
+//                print("dataModel", dataModel)
+//                gasStations.append(dataModel)
+//            }
+//            completion(.success(gasStations))
+//        }
     }
-    
     
     
     
