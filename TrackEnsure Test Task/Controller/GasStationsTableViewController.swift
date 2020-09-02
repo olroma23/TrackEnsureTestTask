@@ -17,13 +17,14 @@ class GasStationsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        gasStations = realm.objects(GasStation.self)
         tableView.register(GasStationTableViewCell.self, forCellReuseIdentifier: cellid)
         tableView.backgroundColor = .systemBackground
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.tableView.reloadData()
+        self.gasStations = realm.objects(GasStation.self)
+        print("viewWillAppear")
         FirestoreService.shared.syncData { (result) in
             switch result {
             case .success():
@@ -31,14 +32,17 @@ class GasStationsTableViewController: UITableViewController {
             case .failure(let error):
                 print(error.localizedDescription)
             }
+            self.tableView.reloadData()
         }
+
     }
     
     
     // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return gasStations.isEmpty ? 0 : gasStations.count
+           return gasStations.isEmpty ? 0 : gasStations.count
+    
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

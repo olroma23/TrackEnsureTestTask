@@ -31,9 +31,16 @@ class InfoTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        tableView.reloadData()
+        let dispatchGroup = DispatchGroup()
+        dispatchGroup.enter()
         realm.refresh()
-        configDataSource()
+        gasStations = Array(realm.objects(GasStation.self))
+        tableView.reloadData()
+        dispatchGroup.leave()
+        dispatchGroup.notify(queue: .main) {
+            self.configDataSource()
+        }
+
         //                  Observe Results Notifications
         //        notificationToken = results.observe { [weak self] (changes: RealmCollectionChange) in
         //            guard let tableView = self?.tableView else { return }
@@ -63,8 +70,8 @@ class InfoTableViewController: UITableViewController {
     }
     
     
+    
     private func configDataSource() {
-        gasStations = Array(realm.objects(GasStation.self))
         groupedDict = Dictionary(grouping: gasStations) { (station) -> String in
             return station.address!
         }
