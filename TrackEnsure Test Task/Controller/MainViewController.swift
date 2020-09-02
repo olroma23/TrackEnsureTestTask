@@ -30,7 +30,7 @@ class MainViewController: UIViewController {
         self.navigationItem.rightBarButtonItem = addButton
         
         addChildControllers()
-        
+                
     }
     
     
@@ -63,6 +63,7 @@ class MainViewController: UIViewController {
     @objc private func segmentControl() {
         switch switchView?.selectedSegmentIndex {
         case 0:
+            self.removeChild()
             self.addChildControllers()
         case 1:
             self.removeChild()

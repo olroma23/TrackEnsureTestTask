@@ -8,6 +8,7 @@
 
 import Firebase
 import FirebaseFirestore
+import RealmSwift
 
 class FirestoreService {
     
@@ -51,15 +52,75 @@ class FirestoreService {
             "address": gasStation.address!,
             "supplier": gasStation.supplier!,
             "cost": gasStation.cost!,
-            "quality": gasStation.quality! ]) { error in
+            "quality": gasStation.quality!,
+            "uuid": gasStation.uuid ]) { error in
+                if let error = error {
+                    print("Error writing document: \(error)")
+                } else {
+                    print("Document successfully rewritten!")
+                }
+        }
+        
+    }
+    
+    
+    func syncData(completion: @escaping(Result<Void, Error>) -> ()) {
+        
+        self.gasStationRef.getDocuments { (querySnapshot, error) in
             if let error = error {
-                print("Error writing document: \(error)")
-            } else {
-                print("Document successfully rewritten!")
+                completion(.failure(error))
+                return
             }
+            for document in querySnapshot!.documents {
+                let data = document.data()
+                let dataModel = GasStation(name: data["name"]! as! String,
+                                           address: data["address"]! as! String,
+                                           supplier: data["supplier"]! as! String,
+                                           cost: data["cost"]! as! String,
+                                           quality: data["quality"]! as! String,
+                                           uuid: data["uuid"]! as! String )
+                StorageManager.shared.saveObject(gasStation: dataModel, update: true)
+
+            }
+
+            completion(.success(Void()))
+        }
+        
+        
+    }
+    
+    
+    func getData(completion: @escaping(Result<[GasStation], Error>) -> ()) {
+        
+
+        self.gasStationRef.getDocuments { (querySnapshot, error) in
+            var gasStations: [GasStation] = []
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            for document in querySnapshot!.documents {
+                let data = document.data()
+                print("data", data)
+                let dataModel = GasStation(name: data["name"]! as! String,
+                                           address: data["address"]! as! String,
+                                           supplier: data["supplier"]! as! String,
+                                           cost: data["cost"]! as! String,
+                                           quality: data["quality"]! as! String,
+                                           uuid: data["uuid"]! as! String )
+                print("dataModel", dataModel)
+                gasStations.append(dataModel)
+
+
+            }
+
+            completion(.success(gasStations))
         }
 
+
     }
+    
+    
     
     
 }

@@ -13,6 +13,7 @@ class GasStationsTableViewController: UITableViewController {
     
     var gasStations: Results<GasStation>!
     private let cellid = "gasStationCell"
+    let infoTableView = InfoTableViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +24,14 @@ class GasStationsTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.tableView.reloadData()
+        FirestoreService.shared.syncData { (result) in
+            switch result {
+            case .success():
+                print("success")
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
     
     
@@ -58,6 +67,7 @@ class GasStationsTableViewController: UITableViewController {
             let currentGasStation = gasStations[indexPath.row]
             StorageManager.shared.deleteObject(currentGasStation)
             tableView.deleteRows(at: [indexPath], with: .fade)
+            infoTableView.tableView.reloadData()
         }
     }
     

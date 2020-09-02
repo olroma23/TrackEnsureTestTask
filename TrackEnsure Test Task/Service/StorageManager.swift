@@ -31,23 +31,31 @@ class StorageManager {
         }
     }
     
-    func deleteObject(_ gasStation: GasStation) {
+    func saveObject(gasStation: GasStation, update: Bool) {
         
-        FirestoreService.shared.deleteGasStation(gasStation: gasStation) { (result) in
-               switch result {
-               case .success():
-                   print("Deleted")
-               case .failure(let error):
-                   print(error.localizedDescription)
-               }
-           }
-        
-        try! realm.write {
-            realm.delete(gasStation)
+      try! realm.write {
+        realm.add(gasStation, update: .modified)
         }
-        
-   
+
 
     }
-    
-}
+        
+        func deleteObject(_ gasStation: GasStation) {
+            
+            FirestoreService.shared.deleteGasStation(gasStation: gasStation) { (result) in
+                switch result {
+                case .success():
+                    print("Deleted")
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+            
+            try! realm.write {
+                realm.delete(gasStation)
+            }
+            
+        }
+        
+    }
+

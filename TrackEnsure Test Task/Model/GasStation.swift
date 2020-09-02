@@ -11,12 +11,16 @@ import RealmSwift
 
 class GasStation: Object {
     
-    @objc dynamic var name = ""
-    @objc dynamic var address: String?
-    @objc dynamic var supplier: String?
-    @objc dynamic var cost: String?
-    @objc dynamic var quality: String?
-    @objc dynamic var uuid = UUID().uuidString
+     @objc dynamic var name = ""
+     @objc dynamic var address: String?
+     @objc dynamic var supplier: String?
+     @objc dynamic var cost: String?
+     @objc dynamic var quality: String?
+     @objc dynamic var uuid = UUID().uuidString
+    
+    override static func primaryKey() -> String? {
+      return "uuid"
+    }
     
     // data representation for Firestore
     var representation: [String: Any] {
@@ -25,6 +29,7 @@ class GasStation: Object {
         rep["supplier"] = supplier
         rep["cost"] = cost
         rep["quality"] = quality
+        rep["uuid"] = uuid
         return rep
     }
     
@@ -37,9 +42,15 @@ class GasStation: Object {
         self.quality = quality
     }
     
-
-    
-    
+    convenience init(name: String, address: String, supplier: String, cost: String, quality: String, uuid: String?) {
+        self.init()
+        self.name = name
+        self.address = address
+        self.supplier = supplier
+        self.cost = cost
+        self.quality = quality
+        self.uuid = uuid!
+    }
     
 }
 
