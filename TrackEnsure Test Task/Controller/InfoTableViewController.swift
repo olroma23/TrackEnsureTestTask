@@ -9,6 +9,7 @@
 import UIKit
 import RealmSwift
 
+
 class InfoTableViewController: UITableViewController {
     
     let cellid = "infoCell"
@@ -24,22 +25,19 @@ class InfoTableViewController: UITableViewController {
         
         tableView.register(InfoTableViewCell.self, forCellReuseIdentifier: cellid)
         tableView.backgroundColor = .systemBackground
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
         
     }
     
+ 
+    override func viewDidAppear(_ animated: Bool) {
+
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
-        let dispatchGroup = DispatchGroup()
-        dispatchGroup.enter()
-        realm.refresh()
-        gasStations = Array(realm.objects(GasStation.self))
-        tableView.reloadData()
-        dispatchGroup.leave()
-        dispatchGroup.notify(queue: .main) {
-            self.configDataSource()
-        }
+          self.configDataSource()
+
+          
+ 
 
         //                  Observe Results Notifications
         //        notificationToken = results.observe { [weak self] (changes: RealmCollectionChange) in
@@ -72,6 +70,9 @@ class InfoTableViewController: UITableViewController {
     
     
     private func configDataSource() {
+        
+        gasStations = Array(realm.objects(GasStation.self))
+        
         groupedDict = Dictionary(grouping: gasStations) { (station) -> String in
             return station.address!
         }
@@ -137,10 +138,10 @@ class InfoTableViewController: UITableViewController {
         return 70
     }
     
-    deinit {
-        notificationToken?.invalidate()
-    }
-    
+//    deinit {
+//        notificationToken?.invalidate()
+//    }
+//
     
 }
 
